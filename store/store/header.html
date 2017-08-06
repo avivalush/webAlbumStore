@@ -1,0 +1,17 @@
+<div id="menu-bar" ng-controller="mainController as mainCtrl">
+  <h1>Vynil Record Store</h1>
+  <ul>
+
+
+
+
+    <li><a href="#!/cart" ng-show="mainCtrl.userService.isLoggedIn"><img src="pic/cart.png" style="width:22px;" /></a></li>
+    <li><a href="#!/login" ng-show="!mainCtrl.userService.isLoggedIn">Login</a></li>
+    <li><a href="#!/register" ng-show="!mainCtrl.userService.isLoggedIn">Register</a></li>
+    <li><a href="#!/about">About</a></li>
+    <li><a href="#!/products">products</a></li>
+    <li><a href="#!/home">Home</a></li>
+
+
+  </ul>
+</div>

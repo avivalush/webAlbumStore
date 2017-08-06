@@ -1,0 +1,34 @@
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script>
+<script src="components\login\loginController.js"></script>
+<div ng-controller="loginController as logCtrl" class="content">
+  <h1> Login </h1>
+  <form name="contactForm" ng-submit="logCtrl.loginfunc(contactForm.$valid)">
+    <input type="text" placeholder="User Name" name="name" ng-model="logCtrl.user.User_name" required/>
+    <span style="color:red" ng-show="contactForm.name.$dirty && contactForm.name.$invalid">
+      <span ng-show="contactForm.name.$error.required">User name is required.</span>
+      </span>
+    <input type="password" placeholder="Password" name="pss" ng-model="logCtrl.user.User_password" required/>
+    <span style="color:red" ng-show="contactForm.pss.$touched">
+      <span ng-show="contactForm.pss.$error.required">Password is required.</span>
+    </span>
+    <input type="submit" value="login" ng-disabled="contactForm.$invalid"/>
+
+    <!--<input type="button" value="forgot your password?"/>-->
+  </form>
+  <input class="content" type="button" value="Forgot your password?" ng-click="logCtrl.restorefunc()"></input>
+
+  <form id="fres" name="contactFormres" ng-show="logCtrl.restore" ng-submit="logCtrl.checkans(contactFormres.$valid)" novalidate>
+    <div class="content" >
+      <input type="text" placeholder="User Name" name="name" ng-model="logCtrl.login.User_name" required/>
+      <span style="color:red" ng-show="contactFormres.name.$dirty && contactFormres.name.$invalid">
+      <span ng-show="contactFormres.name.$error.required">User name is required.</span>
+      </span>
+      <h4> {{logCtrl.questionrestore1}} </h4>
+      <input type="text" placeholder="Answer to question 1" name="res1" ng-model="logCtrl.login.qres1" ng-required="true"/>
+      <h4> {{logCtrl.questionrestore2}} </h4>
+      <input type="text" placeholder="Answer to question 2" name="res2" ng-model="logCtrl.login.qres2" ng-required="true"/>
+      <input type="submit"  style="width:150px;" ng-disabled="contactFormres.$invalid"value="Restore Password"></input>
+
+    </div>
+  </form>
+</div>

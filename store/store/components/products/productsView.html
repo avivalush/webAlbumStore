@@ -1,0 +1,145 @@
+<script src="components\products\productsController.js"></script>
+
+<!------------------------------------------------------------------------------>
+<div class="content" ng-controller="productsController as prodCtrl">
+  <h1> Products </h1>
+  <p style="text-align:left"> Order by: </p>
+  <div style="margin-left: 7px;">
+    <button style="width: 24%" ng-click="order = 'Item_name'">Album name</button>
+    <button style="width: 24%; margin-right: 5px;" ng-click="order = 'Item_artist'">Artist name</button>
+    <button style="width: 25%" ng-click="order = 'Item_Category'">Category</button>
+    <button style="width: 24.5%" ng-click="order = 'Item_price'">Price</button>
+
+  </div>
+  <input type="text" ng-model="search" placeholder="search for a name" />
+
+  <div style="margin-left: 7px;">
+
+    <button style="width: 30%" ng-click="prodCtrl.showallitmes()">All items</button>
+
+    <select style="width: 30%" ng-options="cat1.Category_name for cat1 in prodCtrl.categories" ng-model="prodCtrl.choosencat" ng-change="prodCtrl.showitemsbycat()">
+      <option value="">Category</option>
+    </select>
+
+  </div>
+
+
+  <div id="content-wrap">
+
+    <ul> <!--here we will get the json of the cat from the server -->
+
+      <h3 style="text-align: center;"><b>recomended items</b> </h3>
+      <li ng-repeat="itemr in prodCtrl.recomendeditems"> <!--the prodctrl.items will change to the array thet will hold the data in the controller -->
+        <p><b> {{itemr.Item_name}}</b>     by: {{itemr.Item_artist}}</p>
+        <div id="shaddow3" class="flex-containerrec">
+          <div class="flex-itemrec">
+            <img ng-src="{{ itemr.photourl }}" style="width:112px;" />
+            <br><br>
+            <button style="background:crimson;color:white; width:120px;" ng-click="prodCtrl.addprodtocart(itemr)" style="width: 24%;">Add to Cart</button>
+          </div>
+
+          <div class="flex-itemrec" >
+            <!--<p>Price <b> {{item.item_price}} $</b></p>-->
+            <p>Category <b> {{itemr.Item_Category}}</b></p>
+            <p>Item Stock <b> {{itemr.Item_stock}}</b></p>
+            <p>Published <b> {{itemr.datePublish}}</b></p>
+            <p>Price <b> {{itemr.Item_price}} $</b></p>
+
+
+            <br>
+            <button style="background:crimson;color:white; width:120px;" ng-click="prodCtrl.show(itemr)" style="width: 24%;">More info</button>
+          </div>
+
+
+
+        </div>
+    </ul>
+  </div>
+
+  <div id="sidebar">
+
+
+    <ul ng-show="prodCtrl.itembycat"> <!--here we will get the json of the cat from the server -->
+
+      <li ng-repeat="itemcat in prodCtrl.itemsbycategory  | orderBy: order | filter: search"> <!--the prodctrl.items will change to the array thet will hold the data in the controller -->
+
+        <p><b> {{itemcat.Item_name}}</b>   by: {{itemcat.Item_artist}}</p>
+        <div id="shaddow2" class="flex-containerall">
+
+          <div class="flex-itemall">
+            <img ng-src="{{ itemcat.photourl }}" style="width:150px;" />
+          </div>
+
+          <div class="flex-itemall" >
+            <!--<p>Price <b> {{item.item_price}} $</b></p>-->
+            <p>Category <b> {{itemcat.Item_Category}}</b></p>
+            <p>Item Stock <b> {{itemcat.Item_stock}}</b></p>
+            <p>Published <b> {{itemcat.datePublish}}</b></p>
+            <p>Price <b> {{itemcat.Item_price}} $</b></p>
+          </div>
+
+
+
+          <div class="flex-itembtn">
+
+            <br><br>
+            <br>
+
+
+            <button style="background:crimson;color:white;  width: 150px;" ng-click="prodCtrl.addprodtocart(itemcat)" style="width: 24%;">Add to Cart</button>
+            <br><br>
+            <button style="background:crimson;color:white;  width: 150px;" ng-click="prodCtrl.show(itemcat)" style="width: 24%;">More info</button>
+
+          </div>
+        </div>
+
+
+      </li>
+    </ul>
+
+
+    <ul ng-show="prodCtrl.allitems">
+      <li ng-repeat="item in prodCtrl.items | orderBy: order | filter: search">
+        <p><b> {{item.Item_name}}</b>     by: {{item.Item_artist}}</p>
+        <div id="shaddow" class="flex-containerall">
+          <div class="flex-item">
+            <img ng-src="{{ item.photourl }}" style="width:150px;" />
+          </div>
+
+          <div class="flex-itemall" >
+            <!--<p>Price <b> {{item.item_price}} $</b></p>-->
+            <p>Category <b> {{item.Item_Category}}</b></p>
+            <p>Item Stock <b> {{item.Item_stock}}</b></p>
+            <p>Published <b> {{item.datePublish}}</b></p>
+            <p >Price <b> {{item.Item_price}} $</b></p>
+          </div>
+
+
+
+          <div class="flex-itembtn">
+
+
+            <br><br>
+            <br>
+
+
+            <button style="background:crimson;color:white; width: 150px;" ng-click="prodCtrl.addprodtocart(item)" style="width: 24%;">Add to Cart</button>
+
+            <br><br>
+
+
+            <button style="background:crimson;color:white; width: 150px;" ng-click="prodCtrl.show(item)">More info</button>
+
+
+          </div>
+        </div>
+
+
+
+      </li>
+
+    </ul>
+  </div>
+
+
+</div>

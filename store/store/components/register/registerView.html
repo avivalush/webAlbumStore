@@ -1,0 +1,51 @@
+<script src="components\register\registerController.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+
+<div class="content" ng-controller="registerController as registerCtrl">
+  <h1> Register </h1>
+  <form id="registerform" name="contactForm" ng-submit="registerCtrl.registerfunc()" novalidate>
+    <input type="text" placeholder="User Name" name="uname" ng-pattern="/^[A-z]+$/" ng-model="registerCtrl.register.username" ng-required="true" ng-minlength="3" ng-maxlength="8"/>
+    <p class="registerperror" ng-show="(contactForm.uname.$invalid && contactForm.uname.$touched)">Valid User Name is requiered </p>
+
+    <input type="password" placeholder="Password" name="passw" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[0-9])[A-Za-z\d]{5,10}$/" ng-model="registerCtrl.register.password" ng-required="true" ng-minlength="5" ng-maxlength="10"/>
+    <p class="registerperror" ng-show="(contactForm.passw.$invalid && contactForm.passw.$touched)">Valid Password is requiered </p>
+
+    <input type="password" placeholder="Confirm Password" name="passw2" ng-pattern="/^(?=.*[A-Za-z])(?=.*\d)(?=.*[0-9])[A-Za-z\d]{5,10}$/" ng-model="registerCtrl.register.password2" ng-required="true" ng-minlength="5" ng-maxlength="10"/>
+    <p class="registerperror" ng-show="registerCtrl.register.password2!=registerCtrl.register.password && contactForm.passw2.$touched">Password must match the previous entry </p>
+
+    <input type="text" placeholder="First Name" name="fname" ng-model="registerCtrl.register.firstname" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.fname.$invalid && contactForm.fname.$touched)">First Name is requiered </p>
+
+    <input type="text" placeholder="Last Name" name="lname" ng-model="registerCtrl.register.lastname" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.lname.$invalid && contactForm.lname.$touched)">Last Name is requiered </p>
+
+    <input type="email" placeholder="Email" name="email" ng-model="registerCtrl.register.email" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.email.$invalid && contactForm.email.$touched)">Valid Email is requiered </p>
+
+    <input type="text" placeholder="Address" name="address" ng-model="registerCtrl.register.address" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.address.$invalid && contactForm.address.$touched)">Address is requiered </p>
+
+    <input type="text" placeholder="Restore1: What is your mother's name?" name="restore1" ng-model="registerCtrl.register.restore1" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.restore1.$invalid && contactForm.restore1.$touched)">Restore question is requiered </p>
+
+    <input type="text" placeholder="Restore2: What is the name of your elementry school?" name="restore2" ng-model="registerCtrl.register.restore2" ng-required="true"/>
+    <p class="registerperror" ng-show="(contactForm.restore2.$invalid && contactForm.restore2.$touched)">Restore question is requiered </p>
+
+    <select ng-options=" country for country in registerCtrl.countrylist" name="cont" value="countries" ng-model="registerCtrl.register.country" ng-required="true">
+      <option value="">Select country</option>
+    </select>
+    <p class="registerperror" ng-show="(contactForm.cont.$invalid && contactForm.cont.$touched)">Country is requiered </p>
+
+
+    <select ng-options="cat1.Category_name for cat1 in registerCtrl.categories" ng-model="registerCtrl.register.catr1">
+      <option value="">Select first category</option>
+    </select>
+    <select ng-options="cat2.Category_name for cat2 in registerCtrl.categories" ng-model="registerCtrl.register.catr2">
+      <option value="">Select seccond category</option>
+    </select>
+    <select ng-options="cat3.Category_name for cat3 in registerCtrl.categories" ng-model="registerCtrl.register.catr3">
+      <option value="">Select third category</option>
+    </select>
+    <input type="submit" value="Register" ng-disabled="contactForm.$invalid"/>
+  </form>
+</div>

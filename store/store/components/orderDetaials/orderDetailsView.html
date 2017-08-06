@@ -1,0 +1,15 @@
+<script src="components\products\cartController.js"></script>
+
+<div class="content" ng-controller="cartController as cartCtrl">
+    <div class="contentdial" >
+        <h2>INFO</h2>
+        <h4>Order Number: {{cartCtrl.cartService.Order_id}}</b>     on the date: {{cartCtrl.cartService.DateOrder}} </h4>
+        <h4>Shipping Date:{{cartCtrl.cartService.dateShip}}</h4>
+        <h4>The products you ordered are:</h4>
+        <div ng-repeat="item in cartCtrl.cartService.listItem">
+        <h4 style="text-align: left;">Name:{{item.Item_name}}  </h4>
+        <h5 style="text-align: center;"> Quantity purchased:{{item.Item_name}} Per unit price:{{item.Item_price}}&</h5>
+        <h5 style="text-align: center;"> The deal was made{{item.currency}} </h5>
+        </div>
+    </div>
+</div>

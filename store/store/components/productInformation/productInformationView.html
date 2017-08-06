@@ -1,0 +1,13 @@
+
+<script src="components\products\productsController.js"></script>
+
+<div class="content" ng-controller="productsController as prodCtrl">
+<div class="contentdial" >
+    <h2>INFO</h2>
+    <h4> {{prodCtrl.cartService.Item_name}}</b>     by: {{prodCtrl.cartService.Item_artist}} </h4><br>
+    <img  ng-src="{{ prodCtrl.cartService.photourl }}" style="width:110px; text-align: center;" />
+    <h5 style="text-align: center;"> {{prodCtrl.cartService.Item_Category}} album, since {{prodCtrl.cartService.datePublish}} around {{prodCtrl.cartService.buyAmount}} copies of the album was sold </h5>
+    <h5 style="text-align: center;"> {{prodCtrl.cartService.Item_stock}} copies has left in stock </h5>
+    <h5 style="text-align: center;"> {{prodCtrl.cartService.Item_price}} $ </h5>
+</div>
+</div>

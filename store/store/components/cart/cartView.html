@@ -1,0 +1,69 @@
+<script src="components\cart\cartController.js"></script>
+
+<!----------------------------------------------------------------------------->
+<div class="content" ng-controller="cartController as cartCtrl">
+  <h1> Cart </h1>
+  <ul>
+    <p></p>
+
+    <button style="width: 150px;float:left;" ng-click="order = 'Item_name'">Album name</button>
+    <button style="width: 150px;float:left;" ng-click="order = 'Item_artist'">Artist name</button>
+    <button style="width: 150px;float:right;" ng-click="cartCtrl.showpastorder()">Past orders</button>
+
+    <br>
+    <br>
+    <br>
+    <p> Total cost: {{cartCtrl.cartService.getTotalPrice()}} $</p>
+    <button style="width: 150px;background:green; color:white;" ng-click="cartCtrl.buyitems()">Buy</button>
+    <li ng-show="cartCtrl.allitems" ng-repeat="item in cartCtrl.cartService.getProductInCart() | orderBy: order ">
+      <p><b> {{item.Item_name}}</b>     by: {{item.Item_artist}}</p>
+      <div id="shaddow3" class="flex-containercart">
+        <div class="flex-itemcart">
+          <img ng-src="{{item.photourl}}" style="width:150px;" />
+        </div>
+
+        <div class="flex-itemcart" >
+          <!--<p>Price <b> {{item.item_price}} $</b></p>-->
+          <p>Category: <b> {{item.Item_Category}}</b></p>
+          <p>Item Stock: <b> {{item.Item_stock}}</b></p>
+          <p>Published: <b> {{item.datePublish}}</b></p>
+          <p>Order Quantity: <b> {{cartCtrl.choosenAmunt}}</b></p>
+          <select style="width: 32%" ng-options="page for page in cartCtrl.Range()" ng-model="cartCtrl.choosenAmunt" ng-change="cartCtrl.toSolve(item,cartCtrl.choosenAmunt)">
+            <option value="">Select</option>
+          </select>
+        </div>
+
+
+
+        <div class="flex-itembtn">
+          <div class="btnbuy">
+            <p>Price <b> {{item.Item_price}} $</b></p>
+            <br>
+            <button style="background:crimson;color:white;" ng-click="cartCtrl.show(item)" style="width: 24%;">More info</button>
+            <br>
+            <div style="float: right" class="remove" ng-click="cartCtrl.removeitem(item)">x</div>
+
+          </div>
+        </div>
+      </div>
+      <div ng-show="!cartCtrl.cartService.getTotalPrice()==0">
+
+      </div>
+    </li>
+
+    <ul ng-show="cartCtrl.pastordertoogle" ng-repeat="order in cartCtrl.passOrdes">
+      <li>
+
+        <h3> Past orders </h3>
+        <p>Order Number:<b> {{order.Order_id}}</b></p>
+        <p>Quantity of products:<b> {{order.totalAmount}}</b></p>
+        <p>Total cost:<b> {{order.totalPrice}}</b></p>
+        <p>Order Date:<b> {{order.DateOrder}}</b></p>
+        <p>Shipping Date:<b> {{order.dateShip}}</b></p>
+        <p>Payment done:<b> {{order.currency}}</b></p>
+        <button style="background:crimson;color:white;" ng-click="cartCtrl.ordersDe(order)" style="width: 24%;">Order details</button>
+      </li>
+      <button style="background:crimson;color:white;" ng-click="cartCtrl.closee()" style="width: 24%;">Close pass orders</button>
+    </ul>
+  </ul>
+</div>

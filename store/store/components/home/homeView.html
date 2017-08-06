@@ -1,0 +1,46 @@
+<script src="components\login\loginController.js"></script>
+
+
+<div class="content" ng-controller="homeController as homeCtrl">
+    <h1> Home </h1>
+    <br>
+    <div ng-show="homeCtrl.userService.isLoggedIn">
+        <h2> New Items </h2>
+        <div class="flex-container3">
+
+            <div class="flex-item3" ng-repeat="item in homeCtrl.newitems">
+
+                <img ng-src="{{ item.photourl }}" style="width:80px;" />
+                <p>{{item.Item_name}} </p>
+                <p> {{item.Item_artist}} </p>
+
+                <button style="background:crimson;color:white; width: 150px;" ng-click="homeCtrl.addprodtocart(item)" style="width: 24%;">Add to Cart</button>
+                <br><br>
+                <button style="background:crimson;color:white; width: 150px;" ng-click="homeCtrl.show(item)" style="width: 24%;">More info</button>
+
+            </div>
+
+        </div>
+    </div>
+    <br>
+    <div>
+        <h2> Top Sellers </h2>
+        <div class="flex-container3">
+
+            <div class="flex-item3" ng-repeat="item in homeCtrl.topsellers" >
+                <img ng-src="{{ item.photourl }}" style="width:80px;" />
+                <p>{{item.Item_name}} </p>
+                <p> {{item.Item_artist}} </p>
+                <div ng-show="homeCtrl.userService.isLoggedIn">
+                    <button style="background:crimson;color:white; width: 150px;" ng-click="homeCtrl.show(item)" style="width: 24%;">More info</button>
+                    <br> <br>
+                    <button style="background:crimson;color:white; width: 150px;" ng-click="homeCtrl.addprodtocart(item) " style="width: 24%;">Add to Cart</button>
+
+                </div>
+
+            </div>
+        </div>
+
+
+    </div>
+</div>

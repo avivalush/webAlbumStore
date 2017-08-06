@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" ng-app='app'>
+  <head>
+    <title>Vynil Record Store</title>
+    <link href="content/css/styles.css" rel="stylesheet" type="text/css" />
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog.css">
+    <link rel="stylesheet" href="node_modules/ng-dialog/css/ngDialog-theme-default.css">
+
+    <script src="app\lib\angular.js"></script>
+    <script src="app\lib\angular-route.min.js"></script>
+    <script src="https://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.6.0.js" type="text/javascript"></script>
+    <script src="https://m-e-conroy.github.io/angular-dialog-service/javascripts/dialogs.min.js" type="text/javascript"></script>
+    <script src="app\app.js"></script>
+    <script src="components\login\loginController.js"></script>
+    <script src="components\register\registerController.js"></script>
+    <script src="components\products\productsController.js"></script>
+    <script src="components\cart\cartController.js"></script>
+    <script src="components\home\homeController.js"></script>
+
+    <script src="https://rawgit.com/dwmkerr/angular-modal-service/master/dst/angular-modal-service.js"></script>
+    <script src="node_modules/ng-dialog/js/ngDialog.js"></script>
+    <script src="node_modules/angular-local-storage/dist/angular-local-storage.js"></script>
+    <script src="node_modules/angular-local-storage/dist/angular-local-storage.min.js"></script>
+    <script src="node_modules/ngstorage/ngstorage.js"></script>
+    <script src="node_modules/ngstorage/ngstorage.min.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.js"></script>
+    <script src="node_modules/angular-cookies/angular-cookies.min.js"></script>
+
+
+
+
+  <!--  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.0rc1/angular-route.min.js"></script> -->
+
+
+
+  <!--  <script src="app\lib\bootstrap.min.js"></script>-->
+  </head>
+
+  <div class="lastlogin" ng-controller="mainController as mainCtrl">
+    <p><b>Hello {{mainCtrl.userService.userName}}</b> <span style="font-size: 10px;">{{mainCtrl.userService.lastLogin}} <a style="color:white;" href="javascript:void(0);" ng-click="mainCtrl.logOut();" ng-show="mainCtrl.userService.isLoggedIn">(LogOut)</a></span> </p>
+
+  </div>
+  <body>
+    <header ng-include="'header.html'"></header>
+    <main ng-view></main>
+
+  </body>
+</html>
